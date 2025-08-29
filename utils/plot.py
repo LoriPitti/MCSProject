@@ -57,7 +57,7 @@ def plot_matrix_heatmap(A: csr_matrix, name):
 
     plt.figure(figsize=(6, 6))
     plt.spy(A, markersize=0.5)
-    plt.title("Spy plot - Posizione dei valori non nulli in A")
+    plt.title("Spy plot - Position of not null values in A")
 
     save_path = os.path.join(folder, f"{name}.png")
     plt.savefig(save_path, dpi=300, bbox_inches='tight')
@@ -68,26 +68,28 @@ def plot_difference(x_k, name, x):
     diff  = np.abs(x_k - x)
 
     plt.figure(figsize=(6, 4))
-    plt.plot(range(len(diff)), diff, label="Differenza assoluta")
+    plt.plot(range(len(diff)), diff, label="Absolute difference")
     plt.xlabel('Indice')
-    plt.ylabel('Differenza')
-    plt.title("Differenza tra Soluzione Approssimata e Soluzione Esatta")
+    plt.ylabel('Difference')
+    plt.title("Difference between Approximate Solution and Exact Solution")
     plt.legend()
     plt.grid(True)
     plt.show()
 
-def plot_gradient_norm(grad_norms, name, i:float):
+def plot_gradient_norm(grad_norms, name,function, tol:float):
     #create folder 
-    folder = f"plots/{name}/gradient_norm"
+    folder = f"plots/{name}/{function}"
     os.makedirs(folder, exist_ok=True)
 
     plt.plot(grad_norms)
     plt.yscale('log')  # scala logaritmica per evidenziare il calo
     plt.xlabel('Iterations')
     plt.ylabel('Gradient Norm')
-    plt.title(f'Convergence of the Gradient Method, tol: {i}')
+    plt.title(f'Convergence of the Gradient Method, tol: {tol}')
     plt.grid(True)
 
-    save_path = os.path.join(folder, f"{name}_conv_gradient_{i}.png")
+    save_path = os.path.join(folder, f"{name}_conv_gradient_{tol}.png")
     plt.savefig(save_path, dpi=300, bbox_inches='tight')
+
+
 

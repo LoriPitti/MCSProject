@@ -4,7 +4,7 @@ from scipy.sparse import spmatrix
 
 def compute_error(A,x_k: np.ndarray,b:  np.ndarray)->float:
     residual = A @ x_k -b
-    num = np.linalg.norm(residual) #normmalization
+    num = np.linalg.norm(residual) #normalization
     den = np.linalg.norm(b)
     return num/den
 
